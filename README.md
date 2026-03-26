@@ -1,42 +1,54 @@
-# Instalasi Aplikasi Material Request
+# Setup Instruction Material Request
 
-## 🗄️ Langkah 1: Siapkan Database
-1. Buka aplikasi PostgreSQL.
-2. Buat database dan table sesuai dengan fle database_scheme.sql yang ada di folder backend.
+## Step 1: Prepare the Database
+
+1. Open the PostgreSQL application.
+2. Create the database and tables based on the `database_scheme.sql` file located in the backend folder.
+
 ---
 
-## Langkah 2: Menjalankan Backend (Server)
-1. Buka project di **Visual Studio Code (VS Code)**.
-2. Buka Folder Backend
-3. Edit file main.ts ganti port menjadi 3001 (agar tidak menabrak port 3000 yang digunakan oleh frontend)
-4. Edit file app.module.ts ganti password database sesuai dengan password yang kamu gunakan saat instalasi PostgreSQL
-5. Buka **Terminal** di dalam VS Code (Klik menu `Terminal` di atas > `New Terminal`).
-6. Ketik perintah ini untuk masuk ke folder Backend, lalu tekan Enter:
+## Step 2: Run the Backend (Server)
+
+1. Open the project in Visual Studio Code (VS Code).
+2. Open the Backend folder.
+3. Edit the `main.ts` file and change the port to 3001 (to avoid conflict with port 3000 used by the frontend).
+4. Edit the `app.module.ts` file and update the database password according to your PostgreSQL installation.
+5. Open the Terminal in VS Code (click the Terminal menu > New Terminal).
+6. Run the following command to navigate to the backend folder:
+
    ```bash
    cd backend
    ```
-7. Ketik perintah ini untuk mendownload pustaka/alat pendukung (butuh koneksi internet & tunggu sampai selesai):
+7. Install the required dependencies (make sure you have internet connection and wait until it finishes):
+
    ```bash
    npm install
    ```
-8. Nyalakan mesin servernya dengan perintah ini:
+8. Start the backend server with:
+
    ```bash
    npm run start:dev
    ```
+
 ---
 
-## Langkah 2: Menjalankan Frontend (Tampilan Website)
-1. Buka **Terminal Baru** di VS Code (Klik lambang `+` di sebelah kanan nama terminal yang sedang berjalan).
-2. Di terminal yang kosong ini, pindah ke folder frontend dengan mengetik:
+## Step 2: Run the Frontend (Website)
+
+1. Open a New Terminal in VS Code (click the + icon on the terminal panel).
+2. Navigate to the frontend folder:
+
    ```bash
    cd frontend
    ```
-3. Sama seperti tadi, download pustaka tampilannya dengan perintah:
+3. Install the frontend dependencies:
+
    ```bash
    npm install
    ```
-4. Jalankan website-nya dengan perintah:
+4. Run the website with:
+
    ```bash
    npm run dev
    ```
+
 ---
