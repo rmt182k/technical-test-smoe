@@ -1,4 +1,4 @@
-# Panduan Instalasi Aplikasi Material Request
+# Instalasi Aplikasi Material Request
 
 ## 🗄️ Langkah 1: Siapkan Database
 1. Buka aplikasi PostgreSQL.
@@ -6,7 +6,7 @@
 ---
 
 ## Langkah 2: Menjalankan Backend (Server)
-1. Buka folder utama proyek ini di **Visual Studio Code (VS Code)**.
+1. Buka project di **Visual Studio Code (VS Code)**.
 2. Buka Folder Backend
 3. Edit file main.ts ganti port menjadi 3001 (agar tidak menabrak port 3000 yang digunakan oleh frontend)
 4. Edit file app.module.ts ganti password database sesuai dengan password yang kamu gunakan saat instalasi PostgreSQL
@@ -26,7 +26,6 @@
 ---
 
 ## Langkah 2: Menjalankan Frontend (Tampilan Website)
-Sekarang kita jalankan tampilan antarmukanya supaya bisa diklik-klik di browser.
 1. Buka **Terminal Baru** di VS Code (Klik lambang `+` di sebelah kanan nama terminal yang sedang berjalan).
 2. Di terminal yang kosong ini, pindah ke folder frontend dengan mengetik:
    ```bash
