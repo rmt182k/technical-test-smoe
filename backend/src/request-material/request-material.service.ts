@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateRequestMaterialDto } from './dto/create-request-material.dto';
@@ -16,6 +16,13 @@ export class RequestMaterialService {
   ) { }
 
   async create(createDto: CreateRequestMaterialDto) {
+    const existing = await this.requestRepo.findOne({
+      where: { code: createDto.code },
+    });
+    if (existing) {
+      throw new ConflictException(`Request with code ${createDto.code} already exists`);
+    }
+
     const request = this.requestRepo.create({
       code: createDto.code,
       date: new Date(createDto.date),
@@ -64,7 +71,15 @@ export class RequestMaterialService {
   async update(id: string, updateDto: UpdateRequestMaterialDto) {
     const request = await this.findOne(id);
 
-    if (updateDto.code) request.code = updateDto.code;
+    if (updateDto.code && updateDto.code !== request.code) {
+      const existing = await this.requestRepo.findOne({
+        where: { code: updateDto.code },
+      });
+      if (existing) {
+        throw new ConflictException(`Request with code ${updateDto.code} already exists`);
+      }
+      request.code = updateDto.code;
+    }
     if (updateDto.date) request.date = new Date(updateDto.date);
     if (updateDto.status) request.status = updateDto.status;
     if (updateDto.department) request.department = updateDto.department;

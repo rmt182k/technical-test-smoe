@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -18,12 +18,27 @@ export class UsersService {
     return this.repo.findOne({ where: { id } as any });
   }
 
-  create(data: Partial<User>) {
+  async create(data: Partial<User>) {
+    if (data.email) {
+      const existing = await this.repo.findOne({ where: { email: data.email } as any });
+      if (existing) {
+        throw new ConflictException(`User with email ${data.email} already exists`);
+      }
+    }
     const newRecord = this.repo.create(data);
     return this.repo.save(newRecord);
   }
 
   async update(id: string, data: Partial<User>) {
+    const current = await this.findOne(id);
+    if (!current) return null;
+
+    if (data.email && data.email !== (current as any).email) {
+      const existing = await this.repo.findOne({ where: { email: data.email } as any });
+      if (existing) {
+        throw new ConflictException(`User with email ${data.email} already exists`);
+      }
+    }
     await this.repo.update(id, data as any);
     return this.findOne(id);
   }
